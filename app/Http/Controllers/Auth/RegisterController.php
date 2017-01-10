@@ -95,19 +95,20 @@ class RegisterController extends Controller
             $email = new EmailVerification(new User(['email_token' => $user->email_token]));
             Mail::to($user->email)->send($email);
             DB::commit();
-            return back();
+            //return back();
+            return redirect('/login')->with('status', 'We sent an activation message to ' . $user->email . '. Check your email.');
         } catch(Exception $e) {
             DB::rollback();
-            return back();
+            //return back();
+            return redirect('/register')->with('warning', 'Error is occured. Please, try again later.');
         }
     }
-
 
     public function verify($token)
     {
         // The verified method has been added to the user model and chained here
         // for better readability
-        User::where('email_token',$token)->firstOrFail()->verified();
+        User::where('email_token', $token)->firstOrFail()->verified();
         return redirect('login');
     }
 }
