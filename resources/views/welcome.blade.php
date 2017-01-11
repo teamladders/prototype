@@ -9,6 +9,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="/css/material.min.css" rel="stylesheet">
 
         <!-- Styles -->
         <style>
@@ -91,5 +92,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Scripts -->
+        <script src="/js/material.min.js"></script>
     </body>
 </html>

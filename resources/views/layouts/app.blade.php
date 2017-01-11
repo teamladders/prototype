@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/material.min.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -82,6 +83,7 @@
     </div>
 
     <!-- Scripts -->
+    <script src="/js/material.min.js"></script>
     <script src="/js/app.js"></script>
 </body>
 </html>
