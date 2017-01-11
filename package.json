@@ -14,5 +14,27 @@
     "lodash": "^4.16.2",
     "vue": "^2.0.1",
     "vue-resource": "^1.0.3"
+  },
+  "name": "teamladders",
+  "description": "This version is designed as a classic Laravel 5 application just to design core functions of the service in a simple way.",
+  "version": "0.0.1",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/teamladders/prototype"
+  },
+  "keywords": [
+    "teamladders"
+  ],
+  "author": "developers",
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/teamladders/prototype/issues"
+  },
+  "dependencies": {
+    "material-design-lite": "^1.3.0"
   }
 }
