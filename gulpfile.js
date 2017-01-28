@@ -17,6 +17,8 @@ elixir((mix) => {
     mix.sass('app.scss')
        .webpack('app.js');
 
+    mix.version(['css/app.css', 'js/app.js']);
+
     mix.copy('node_modules/material-design-lite/material.min.js', 'public/js')
        .copy('node_modules/material-design-lite/material.min.css', 'public/css');
 });
