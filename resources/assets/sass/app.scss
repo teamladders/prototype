@@ -7,3 +7,37 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+ul.personal-menu {
+    border: 1px solid #d8d8d8;
+    border-radius: 3px;
+
+    li {
+        border-bottom: 1px solid #eee;
+        margin-top: 0px;
+
+        a, a:focus {
+            color: #3097D1;
+            background-color: #fff;
+            border-radius: 0;
+        }
+
+        a:hover {
+            border-left: 1px solid #3097D1;
+            padding-left: 14px;
+            border-radius: 0;
+            background-color: #fff;
+        }
+
+        &.active {
+            a, a:focus, a:hover {
+                border-left: 3px solid #3097D1;
+                border-radius: 0;
+                color: #3097D1;
+                background-color: #fff;
+                padding-left: 15px;
+            }
+        }
+    }
+}
+    
