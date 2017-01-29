@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
-
 Route::get('register/verify/{token}', 'Auth\RegisterController@verify');
+
+Route::group(['prefix' => 'personal', 'namespace' => 'Personal'], function () {
+    Route::get('/', 'DashboardController@index');
+});
