@@ -5,9 +5,9 @@
     <div class="row">
         <div class="col-md-3">
             <ul class="nav nav-pills nav-stacked personal-menu">
-                <li role="presentation" class={{ Request::is('home') ? 'active' : '' }}><a href="{{ route('home') }}">Home</a></li>
-                <li role="presentation" class={{ Request::is('profile') ? 'active' : '' }}><a href="{{ route('profile') }}">Profile</a></li>
-                <li role="presentation" class={{ Request::is('team') ? 'active' : '' }}><a href="{{ route('team') }}">Team</a></li>
+                <li role="presentation" class={{ Request::is('personal.dashboard') ? 'active' : '' }}><a href="{{ route('personal.dashboard') }}">Dashboard</a></li>
+                <li role="presentation" class={{ Request::is('personal.profile') ? 'active' : '' }}><a href="{{ route('personal.profile') }}">Profile</a></li>
+                <li role="presentation" class={{ Request::is('personal.team') ? 'active' : '' }}><a href="{{ route('personal.team') }}">Team</a></li>
             </ul>
         </div>
         <div class="col-md-9">

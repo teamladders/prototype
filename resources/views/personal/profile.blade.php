@@ -5,7 +5,7 @@
         <div class="panel-heading">Dashboard</div>
 
         <div class="panel-body">
-            <form method="POST" action="{{ route('user.edit') }}">
+            <form method="POST" action="{{ route('personal.profile') }}">
                 {{ csrf_field() }}
 
                 <div class="form-group">
