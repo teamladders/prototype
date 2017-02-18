@@ -26,11 +26,11 @@ Route::group(['prefix' => 'personal', 'namespace' => 'Personal', 'middleware' =>
 
     Route::get('/', 'DashboardController@index')->name('dashboard');
 
-    Route::get('profile', function() {
-        return View::make('personal.profile');
-    })->name('profile');
+    Route::get('profile', 'UserController@edit')->name('profile');
 
     Route::post('profile', 'UserController@update');
+    
+    Route::post('password', 'UserController@updatePassword')->name('password');
 
     Route::get('team', function() {
         return View::make('personal.team');

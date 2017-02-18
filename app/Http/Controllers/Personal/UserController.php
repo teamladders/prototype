@@ -11,6 +11,85 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    /**
+     * Open user edit form
+     *
+     * @param \Illuminate\Http\Request $request
+     */
+    public function edit(Request $request)
+    {
+        $user = $this->getUser();
+
+        return view('personal.profile', [
+            'user' => $user
+        ]);
+    }
+
+    /**
+     * Update user personal info
+     *
+     * @param \Illuminate\Http\Request $request
+     */
+    public function update(Request $request)
+    {
+        $validator = $this->getProfileValidator($request->all());
+
+        if ($validator->fails()) {
+            return redirect('personal/profile')->with('errors', $validator->errors())->withInput();
+        }
+
+        $user = $this->getUser();
+
+        $user->name = $request->input('name');
+
+        $user->save();
+
+        return redirect('personal/profile')->with('status', 'Your personal information has been updated successfuly!');
+    }
+
+    /**
+     * Update user personal info
+     *
+     * @param \Illuminate\Http\Request $request
+     */
+    public function updatePassword(Request $request)
+    {
+        $validator = $this->getPasswordValidator($request->all());
+
+        if ($validator->fails()) {
+            return redirect('personal/profile')->with('errors', $validator->errors());
+        }
+
+        $user = $this->getUser();
+
+        if (!Hash::check($request->input('password'), $user->password)) {
+            return redirect('personal/profile')->with('error', 'Incorrect password!');
+        }
+
+        if ($request->input('new_password')) {
+            $user->password = bcrypt($request->input('new_password'));
+        }
+
+        $user->save();
+
+        return redirect('personal/profile')->with('status', 'Your password has been changed successfully!');
+    }
+
+    /**
+     * Returns current user object.
+     *
+     * @return \App\User
+     */
+    protected function getUser()
+    {
+        return User::findOrFail(Auth::id());
+    }
+
+    /**
+     * Define custom validation messages
+     * 
+     * @return array
+     */
     protected function validationMessages()
     {
         return [
@@ -23,49 +102,30 @@ class UserController extends Controller
     }
 
     /**
-     * Get a validator.
+     * Get personal info validator.
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function getProfileValidator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'password' => 'required',
-            'new_password' => 'min:6|different:password',
-            'confirm_password' => 'required_with:new_password|min:6'
+            'name' => 'required|max:255'
         ], $this->validationMessages());
     }
 
     /**
-     * Update user personal info
+     * Get password validator.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
      */
-    public function update(Request $request)
+    protected function getPasswordValidator(array $data)
     {
-        if (!Auth::check()) {
-            return redirect('personal/profile')->with('error', 'You are not authorized!');
-        }
-
-        $validator = $this->validator($request->all());
-        if ($validator->fails()) {
-            return redirect('personal/profile')->with('errors', $validator->errors());
-        }
-
-        $user = User::findOrFail(Auth::id());
-
-        if (!Hash::check($request->input('password'), $user->password)) {
-            return redirect('personal/profile')->with('error', 'Incorrect password!');
-        }
-
-        $user->name = $request->input('name');
-
-        if ($request->input('new_password')) {
-            $user->password = bcrypt($request->input('new_password'));
-        }
-
-        $user->save();
-
-        return redirect('personal/profile')->with('status', 'The profile information is successfuly updated!');
+        return Validator::make($data, [
+            'password' => 'required',
+            'new_password' => 'min:6|different:password',
+            'confirm_password' => 'required_with:new_password|min:6'
+        ], $this->validationMessages());
     }
 }
