@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('main.index');
 });
 
 Auth::routes();
@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('register/verify/{token}', 'Auth\RegisterController@verify');
 
 /*
- * Here routes for personal user pages live
+ * Here the routes for personal user pages live
  */
 Route::group(['prefix' => 'personal', 'namespace' => 'Personal', 'middleware' => ['auth'], 'as' => 'personal.'], function () {
 
