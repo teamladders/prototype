@@ -18,7 +18,4 @@ elixir((mix) => {
        .webpack('app.js');
 
     mix.version(['css/app.css', 'js/app.js']);
-
-    mix.copy('node_modules/material-design-lite/material.min.js', 'public/js')
-       .copy('node_modules/material-design-lite/material.min.css', 'public/css');
 });
