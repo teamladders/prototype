@@ -18,4 +18,5 @@ bootstrap/cache/
 .map
 /public/js/*
 /public/css/*
+/public/fonts/*
 /public/build/*
